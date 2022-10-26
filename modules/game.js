@@ -1,4 +1,5 @@
 import { Background } from "./background.js";
+import { InputHandler } from "./input.js";
 import { Player } from "./player.js";
 
 export class Game {
@@ -6,7 +7,9 @@ export class Game {
     this.width = width;
     this.height = height;
     this.background = new Background(this);
+    this.input = new InputHandler(this);
     this.player = new Player(this);
+  
   }
   update(deltaTime) {
     this.player.update(deltaTime);

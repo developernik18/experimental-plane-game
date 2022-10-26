@@ -9,13 +9,26 @@ export class Background {
     // this.height = 1095;
     this.height = this.game.height;
 
+    this.fps = 100;
+    this.imageInterval = 1000 / this.fps;
+    this.imageTimer = 0;
+
+    this.bgSpeed = 4;
+
 
   }
-  update() {
-    this.x -= 5;
-    if(this.x + this.width < 10) {
-      this.x = 0;
+  update(deltaTime) {
+    if(this.imageTimer > this.imageInterval) {
+      this.x -= this.bgSpeed * this.game.speed * this.game.speedModifier;
+      if(this.x + this.width < 10) {
+        this.x = 0;
+      }
+
+      this.imageTimer = 0;
+    } else {
+      this.imageTimer += deltaTime;
     }
+
   }
   draw(context) {
     

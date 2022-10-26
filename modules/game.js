@@ -9,10 +9,13 @@ export class Game {
     this.background = new Background(this);
     this.input = new InputHandler(this);
     this.player = new Player(this);
+    
+    this.speed = 3;
+    this.speedModifier = 2;
   
   }
   update(deltaTime) {
-    this.background.update();
+    this.background.update(deltaTime);
     this.player.update(deltaTime);
   }
   draw(context) {

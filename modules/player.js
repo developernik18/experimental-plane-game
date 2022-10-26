@@ -23,7 +23,6 @@ export class Player {
     this.currentAnimationFrames = this[this.playerStates.fly];
     this.activeState = 0;
     this.activeImage = 0;
-    this.maxImage = 1;
     this.imageWidth = 443;
     this.imageHeight = 302;
     this.width = this.imageWidth * 0.5;
@@ -43,8 +42,7 @@ export class Player {
     this.updateImageAnimation(deltaTime);
     this.verticalMovement();
     this.horizontalMovement();
-    
-    
+    this.firingState();
   }
   draw(context) {
     context.drawImage(
@@ -57,9 +55,9 @@ export class Player {
   }
   updateImageAnimation(deltaTime) {
     if (this.imageTimer > this.imageInterval) {
-      this.activeImage < this.maxImage
-        ? this.activeImage++
-        : (this.activeImage = 0);
+      this.activeImage < this.currentAnimationFrames.length - 1
+        ? this.activeImage += 1
+        : this.activeImage = 0;
 
       this.imageTimer = 0;
     } else {
@@ -95,6 +93,21 @@ export class Player {
     else if(this.x > this.game.width - this.width){
       this.x = this.game.width - this.width;
     }  
+  }
+  firingState() {
+    const inputValue = this.game.input.keys;
+    if(inputValue.includes('F') || inputValue.includes('f')) {
+      if(this.currentAnimationFrames !== this[this.playerStates.shoot]) {
+        this.currentAnimationFrames = this[this.playerStates.shoot];
+        this.activeImage = 0;
+      }
+
+    } else {
+      if(this.currentAnimationFrames !== this[this.playerStates.fly]) {
+        this.currentAnimationFrames = this[this.playerStates.fly];
+        this.activeImage = 0;
+      }
+    }
   }
   
 }

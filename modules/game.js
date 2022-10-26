@@ -12,6 +12,7 @@ export class Game {
   
   }
   update(deltaTime) {
+    this.background.update();
     this.player.update(deltaTime);
   }
   draw(context) {

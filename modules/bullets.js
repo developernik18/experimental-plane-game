@@ -2,9 +2,9 @@ export class Bullets {
   constructor(game) {
     this.game = game;
     this.x = this.game.player.x + this.game.player.width;
-    this.y = this.game.player.y + this.game.player.height * 0.5;
-    this.width = 100;
-    this.height = 100;
+    this.y = this.game.player.y + this.game.player.height * 0.3;
+    this.width = 80;
+    this.height = 80;
 
     this.bulletAnimationFrames = [
       document.querySelector("#bullet1"),

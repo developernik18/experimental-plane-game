@@ -19,7 +19,7 @@ export class Background {
   }
   update(deltaTime) {
     if(this.imageTimer > this.imageInterval) {
-      this.x -= this.bgSpeed * this.game.speed * this.game.speedModifier;
+      this.x -= this.bgSpeed * this.game.speed;
       if(this.x + this.width < 10) {
         this.x = 0;
       }

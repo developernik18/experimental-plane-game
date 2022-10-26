@@ -25,8 +25,8 @@ export class Player {
     this.activeImage = 0;
     this.imageWidth = 443;
     this.imageHeight = 302;
-    this.width = this.imageWidth * 0.5;
-    this.height = this.imageHeight * 0.5;
+    this.width = this.imageWidth * 0.3;
+    this.height = this.imageHeight * 0.3;
 
     this.fps = 10;
     this.imageInterval = 1000 / this.fps;

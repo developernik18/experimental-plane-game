@@ -32,6 +32,10 @@ export class Player {
     this.imageInterval = 1000 / this.fps;
     this.imageTimer = 0;
 
+    this.bps = 20;
+    this.bulletInterval = 1000 / this.bps;
+    this.bulletTimer = 0;
+
     this.x = 50;
     this.y = this.game.height / 2;
     this.vyModifier = 10;
@@ -42,7 +46,7 @@ export class Player {
     this.updateImageAnimation(deltaTime);
     this.verticalMovement();
     this.horizontalMovement();
-    this.firingState();
+    this.firingState(deltaTime);
   }
   draw(context) {
     context.drawImage(
@@ -94,14 +98,14 @@ export class Player {
       this.x = this.game.width - this.width;
     }  
   }
-  firingState() {
+  firingState(deltaTime) {
     const inputValue = this.game.input.keys;
     if(inputValue.includes('F') || inputValue.includes('f')) {
       if(this.currentAnimationFrames !== this[this.playerStates.shoot]) {
         this.currentAnimationFrames = this[this.playerStates.shoot];
         this.activeImage = 0;
       }
-
+      this.fireBullet(deltaTime);
     } else {
       if(this.currentAnimationFrames !== this[this.playerStates.fly]) {
         this.currentAnimationFrames = this[this.playerStates.fly];
@@ -109,5 +113,15 @@ export class Player {
       }
     }
   }
-  
+  fireBullet(deltaTime) {
+    if(this.bulletTimer > this.bulletInterval) {
+      this.game.updateBullets();
+
+      console.log(this.game.bullets);
+      this.bulletTimer = 0;
+    } else {
+      this.bulletTimer += deltaTime;
+    }
+
+  }
 }

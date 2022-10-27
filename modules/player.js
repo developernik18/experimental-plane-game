@@ -12,9 +12,7 @@ export class Player {
       document.querySelector("#shoot4"),
       document.querySelector("#shoot5"),
     ];
-    this.deadAnimationFrames = [
-      document.querySelector("#dead")
-    ]
+    this.deadAnimationFrames = [document.querySelector("#dead")];
     this.playerStates = {
       fly: "flyingAnimationFrames",
       shoot: "shootingAnimationFrames",
@@ -41,6 +39,7 @@ export class Player {
     this.vyModifier = 10;
     this.vxModifier = 10;
 
+    this.collidingCircleRadius = this.width * 0.5 - this.width * 0.1;
   }
   update(deltaTime) {
     this.updateImageAnimation(deltaTime);
@@ -49,6 +48,8 @@ export class Player {
     this.firingState(deltaTime);
   }
   draw(context) {
+    /** @type {HTMLCanvasElement} */
+
     context.drawImage(
       this.currentAnimationFrames[this.activeImage],
       this.x,
@@ -56,12 +57,34 @@ export class Player {
       this.width,
       this.height
     );
+
+    if(this.game.debug) {
+      context.save();
+      context.fillStyle = 'rgba(0,0,0, 0.4)';
+      context.fillRect(
+        this.x + this.width * 0.1,
+        this.y + this.height * 0.1,
+        this.width - + this.width * 0.1,
+        this.height - this.height * 0.2
+      )
+      // context.beginPath();
+      // context.arc(
+      //   this.x + this.width * 0.5,
+      //   this.y + this.height * 0.5,
+      //   this.collidingCircleRadius,
+      //   0,
+      //   2 * Math.PI
+      // );
+      // context.stroke();
+      context.restore();
+    }
+    
   }
   updateImageAnimation(deltaTime) {
     if (this.imageTimer > this.imageInterval) {
       this.activeImage < this.currentAnimationFrames.length - 1
-        ? this.activeImage += 1
-        : this.activeImage = 0;
+        ? (this.activeImage += 1)
+        : (this.activeImage = 0);
 
       this.imageTimer = 0;
     } else {
@@ -70,58 +93,54 @@ export class Player {
   }
   verticalMovement() {
     const inputValue = this.game.input.keys;
-    if(inputValue.includes("ArrowDown")) {
+    if (inputValue.includes("ArrowDown")) {
       this.y += this.vyModifier;
-    } else if(inputValue.includes("ArrowUp")) {
+    } else if (inputValue.includes("ArrowUp")) {
       this.y -= this.vyModifier;
     }
 
-    if(this.y < 10){
+    if (this.y < 10) {
       this.y = 10;
-    } 
-    else if(this.y > this.game.height - this.height){
+    } else if (this.y > this.game.height - this.height) {
       this.y = this.game.height - this.height;
-    }  
+    }
   }
   horizontalMovement() {
     const inputValue = this.game.input.keys;
-    if(inputValue.includes("ArrowRight")) {
+    if (inputValue.includes("ArrowRight")) {
       this.x += this.vxModifier;
-    } else if(inputValue.includes("ArrowLeft")) {
+    } else if (inputValue.includes("ArrowLeft")) {
       this.x -= this.vxModifier;
     }
 
-    if(this.x < 10){
+    if (this.x < 10) {
       this.x = 10;
-    } 
-    else if(this.x > this.game.width - this.width){
+    } else if (this.x > this.game.width - this.width) {
       this.x = this.game.width - this.width;
-    }  
+    }
   }
   firingState(deltaTime) {
     const inputValue = this.game.input.keys;
-    if(inputValue.includes('F') || inputValue.includes('f')) {
-      if(this.currentAnimationFrames !== this[this.playerStates.shoot]) {
+    if (inputValue.includes("F") || inputValue.includes("f")) {
+      if (this.currentAnimationFrames !== this[this.playerStates.shoot]) {
         this.currentAnimationFrames = this[this.playerStates.shoot];
         this.activeImage = 0;
       }
       this.fireBullet(deltaTime);
     } else {
-      if(this.currentAnimationFrames !== this[this.playerStates.fly]) {
+      if (this.currentAnimationFrames !== this[this.playerStates.fly]) {
         this.currentAnimationFrames = this[this.playerStates.fly];
         this.activeImage = 0;
       }
     }
   }
   fireBullet(deltaTime) {
-    if(this.bulletTimer > this.bulletInterval) {
+    if (this.bulletTimer > this.bulletInterval) {
       this.game.updateBullets();
 
-      console.log(this.game.bullets);
       this.bulletTimer = 0;
     } else {
       this.bulletTimer += deltaTime;
     }
-
   }
 }

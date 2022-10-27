@@ -20,8 +20,12 @@ window.addEventListener('load', () => {
 
     game.update(deltaTime);
     game.draw(ctx);
-    // ctx.drawImage(image1, 30, 30, 44.3 * 5, 30.2 * 5); 
-    requestAnimationFrame(animate);
+
+    if(game.gameOver) {
+
+    } else {
+      requestAnimationFrame(animate);
+    }
   }
   
   animate(lastTime);

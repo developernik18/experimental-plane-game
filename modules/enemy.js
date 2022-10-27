@@ -6,6 +6,7 @@ export class Enemy {
     this.y = Math.random() * this.game.height * 0.8;
     this.width = 205;
     this.height = 160;
+    this.sizeModifier = Math.random()  + 1;
 
     this.frameX = 0;
     this.frameY = 0;
@@ -18,6 +19,8 @@ export class Enemy {
     this.fps = 10;
     this.imageInterval = 1000 / this.fps;
     this.imageTimer = 0;
+
+    this.collidingCircleRadius = this.width * 0.5;
   }
   update(deltaTime) {
     this.x -= this.vx * this.game.speed;
@@ -30,6 +33,30 @@ export class Enemy {
 
   }
   draw(context) {
+    
+
+    if(this.game.debug) {
+      context.save();
+      context.beginPath();
+      context.fillStyle = "rgba(255, 0, 0, 0.9)";
+      context.fillRect(
+        this.x + this.width * this.sizeModifier * 0.2,
+        this.y + this.height * this.sizeModifier * 0.4,
+        this.width * this.sizeModifier - (this.width * this.sizeModifier * 0.3),
+        this.height * this.sizeModifier - (this.height * this.sizeModifier * 0.7)
+      )
+      // context.arc(
+      //   this.x + this.width * this.sizeModifier * 0.5,
+      //   this.y + this.height * this.sizeModifier * 0.5,
+      //   this.collidingCircleRadius,
+      //   0,
+      //   2 * Math.PI
+      // );
+
+      context.fill();
+      context.restore();
+    }
+
     context.drawImage(
       this.image,
       this.frameX * this.width,
@@ -38,8 +65,8 @@ export class Enemy {
       this.height,
       this.x,
       this.y,
-      this.width,
-      this.height
+      this.width * this.sizeModifier,
+      this.height * this.sizeModifier
     );
   }
   updateImageAnimation(deltaTime) {

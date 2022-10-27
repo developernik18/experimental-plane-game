@@ -1,10 +1,11 @@
 export class Bullets {
   constructor(game) {
     this.game = game;
-    this.x = this.game.player.x + this.game.player.width;
-    this.y = this.game.player.y + this.game.player.height * 0.3;
-    this.width = 80;
-    this.height = 80;
+    this.x = this.game.player.x + this.game.player.width * 0.6;
+    this.y = this.game.player.y + this.game.player.height * 0.4;
+    this.width = 60;
+    this.height = 60;
+    
 
     this.bulletAnimationFrames = [
       document.querySelector("#bullet1"),
@@ -40,6 +41,21 @@ export class Bullets {
     }
   }
   draw(context) {
+  
+    context.save();
+    context.beginPath();
+    context.fillStyle = "orange";
+    context.arc(
+      this.x + this.width * 0.5,
+      this.y + this.height * 0.5,
+      this.width * 0.5 - this.width * 0.1,
+      0,
+      2 * Math.PI
+    );
+    context.closePath();
+    context.fill();
+    context.restore();
+    
     context.drawImage(
       this.bulletAnimationFrames[this.activeImage],
       this.x,
@@ -47,5 +63,8 @@ export class Bullets {
       this.width,
       this.height
     );
+    
+
+    
   }
 }

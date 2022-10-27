@@ -45,6 +45,12 @@ export class Bullets {
     context.save();
     context.beginPath();
     context.fillStyle = "orange";
+    // context.fillRect(
+    //   this.x,
+    //   this.y,
+    //   this.width,
+    //   this.height
+    // )
     context.arc(
       this.x + this.width * 0.5,
       this.y + this.height * 0.5,

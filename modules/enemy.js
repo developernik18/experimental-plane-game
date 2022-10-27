@@ -20,7 +20,7 @@ export class Enemy {
     this.imageInterval = 1000 / this.fps;
     this.imageTimer = 0;
 
-    this.collidingCircleRadius = this.width * 0.5;
+    this.collisionValues = {};
   }
   update(deltaTime) {
     this.x -= this.vx * this.game.speed;
@@ -45,14 +45,6 @@ export class Enemy {
         this.width * this.sizeModifier - (this.width * this.sizeModifier * 0.3),
         this.height * this.sizeModifier - (this.height * this.sizeModifier * 0.7)
       )
-      // context.arc(
-      //   this.x + this.width * this.sizeModifier * 0.5,
-      //   this.y + this.height * this.sizeModifier * 0.5,
-      //   this.collidingCircleRadius,
-      //   0,
-      //   2 * Math.PI
-      // );
-
       context.fill();
       context.restore();
     }
@@ -85,6 +77,14 @@ export class Enemy {
       this.imageTimer = 0;
     } else {
       this.imageTimer += deltaTime;
+    }
+  }
+  updateCollisionValues() {
+    return this.collisionValues = {
+      x: this.x + this.width * this.sizeModifier * 0.2,
+      y: this.y + this.height * this.sizeModifier * 0.4,
+      w: this.width * this.sizeModifier - (this.width * this.sizeModifier * 0.3),
+      h: this.height * this.sizeModifier - (this.height * this.sizeModifier * 0.7)
     }
   }
 }

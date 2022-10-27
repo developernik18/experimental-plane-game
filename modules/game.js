@@ -45,6 +45,8 @@ export class Game {
     this.enemies = this.enemies.filter(enemy => !enemy.markedForDeletion);
 
     this.collisionDetection.isPlayerDead();
+
+    this.collisionDetection.isEnemyDead();
     // For schedule enemy entry;
 
     if(this.enemyEntryTimer > this.enemyEntryInterval) {

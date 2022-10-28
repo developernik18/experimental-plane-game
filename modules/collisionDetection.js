@@ -20,6 +20,9 @@ export class CollisionDetection {
           bulletValues.y + bulletValues.h > enemyValues.y
         ) {
           // Collision detected!
+          this.game.addNewDestructionFire(enemy);
+          console.log(this.game.destructionFire);
+
           enemy.markedForDeletion = true;
           bullet.markedForDeletion = true;
           this.game.score += 10;

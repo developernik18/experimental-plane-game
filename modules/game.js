@@ -1,6 +1,7 @@
 import { Background } from "./background.js";
 import { Bullets } from "./bullets.js";
 import { CollisionDetection } from "./collisionDetection.js";
+import { Destruction } from "./Destruction.js";
 import { Enemy } from "./enemy.js";
 import { InputHandler } from "./input.js";
 import { Player } from "./player.js";
@@ -20,6 +21,7 @@ export class Game {
   
     this.bullets = [];
     this.enemies = [];
+    this.destructionFire = [];
 
     this.efps = 1;
     this.enemyEntryTimer = 0;
@@ -31,7 +33,8 @@ export class Game {
 
     this.gameMusic = new Audio();
     this.gameMusic.src = '../assets/sound/gameMusic/m1.mp3';
-    // this.gameMusic.src = '../assets/sound/gameMusic/fire_and_wind.ogg';
+
+
   }
   update(deltaTime) {
     // if(this.input.keys.includes('d')) {
@@ -54,6 +57,11 @@ export class Game {
     this.collisionDetection.isPlayerDead();
 
     this.collisionDetection.isEnemyDead();
+
+
+    this.destructionFire.forEach(fire => {
+      fire.update(deltaTime);
+    });
     // For schedule enemy entry;
 
     if(this.enemyEntryTimer > this.enemyEntryInterval) {
@@ -80,6 +88,11 @@ export class Game {
     })
     this.text.draw(context);
 
+    
+    this.destructionFire.forEach(fire => {
+      fire.draw(context);
+    });
+
     if(this.gameOver) {
       this.text.gameOverScreen(context);
     }
@@ -90,5 +103,8 @@ export class Game {
   }
   addNewEnemies() {
     this.enemies.push(new Enemy(this));
+  }
+  addNewDestructionFire(enemyInfo) {
+    this.destructionFire.push(new Destruction(this, enemyInfo));
   }
 }

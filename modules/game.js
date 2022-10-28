@@ -1,7 +1,7 @@
 import { Background } from "./background.js";
 import { Bullets } from "./bullets.js";
 import { CollisionDetection } from "./collisionDetection.js";
-import { Destruction, EnemyDestruction } from "./Destruction.js";
+import { Destruction, EnemyDestruction } from "./destruction.js";
 import { Enemy } from "./enemy.js";
 import { InputHandler } from "./input.js";
 import { Player } from "./player.js";

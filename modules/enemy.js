@@ -2,11 +2,11 @@ export class Enemy {
   constructor(game) {
     this.game = game;
     this.image = document.querySelector("#enemy");
-    this.x = this.game.width;
-    this.y = Math.random() * this.game.height * 0.8;
     this.width = 205;
     this.height = 160;
     this.sizeModifier = Math.random()  + 1;
+    this.x = this.game.width;
+    this.y = Math.random() * (this.game.height - (this.height * this.sizeModifier)) * 0.8;
 
     this.frameX = 0;
     this.frameY = 0;

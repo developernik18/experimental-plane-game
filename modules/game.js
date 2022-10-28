@@ -25,14 +25,18 @@ export class Game {
     this.enemyEntryTimer = 0;
     this.enemyEntryInterval = 1000 / this.efps;
 
-    this.debug = false;
+    // this.debug = false;
     this.score = 0;
     this.gameOver = false;
+
+    this.gameMusic = new Audio();
+    this.gameMusic.src = '../assets/sound/gameMusic/m1.mp3';
+    // this.gameMusic.src = '../assets/sound/gameMusic/fire_and_wind.ogg';
   }
   update(deltaTime) {
-    if(this.input.keys.includes('d')) {
-      this.debug = !this.debug;
-    }
+    // if(this.input.keys.includes('d')) {
+    //   this.debug = !this.debug;
+    // }
 
     this.background.update(deltaTime);
     this.player.update(deltaTime);

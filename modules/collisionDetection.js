@@ -51,7 +51,9 @@ export class CollisionDetection {
         playerValues.y + playerValues.h > enemyValues.y
       ) {
         // Collision detected!
+        this.game.gameMusic.pause();
         this.game.gameOver = true;
+
       } 
 
     })

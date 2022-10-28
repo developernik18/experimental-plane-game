@@ -3,6 +3,10 @@ export class InputHandler {
     this.game = game;
     this.keys = [];
     window.addEventListener("keydown", (e) => {
+      if(!this.game.gameOver) {
+        this.game.gameMusic.play();
+      }
+      
       if (
         (e.key === "ArrowDown" ||
           e.key === "ArrowUp" ||

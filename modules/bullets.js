@@ -22,6 +22,10 @@ export class Bullets {
 
     this.bulletSpeed = 6;
     this.markedForDeletion = false;
+    // this.bulletSound = document.querySelector('#bulletSound');
+    this.bulletSound = new Audio();
+    this.bulletSound.src = '../assets/sound/bulletSound/laser1.mp3';
+    this.bulletSound.play();
   }
   update(deltaTime) {
     if (this.imageTimer > this.imageInterval) {

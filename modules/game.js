@@ -19,7 +19,7 @@ export class Game {
 
     this.speed = 3;
   
-    this.maxBullets = 60;
+    this.maxBullets = 40;
     this.bullets = [];
     this.enemies = [];
     this.destructionFire = [];
@@ -121,6 +121,7 @@ export class Game {
   }
   addDestructionFireForEnemy(enemyInfo) {
     this.destructionFire.push(new EnemyDestruction(this, enemyInfo));
+    this.maxBullets += 3;
   }
   addDestructionFireForPlayer(playerInfo) {
     this.destructionFire.push(new Destruction(this, playerInfo));

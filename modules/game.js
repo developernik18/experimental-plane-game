@@ -1,7 +1,7 @@
 import { Background } from "./background.js";
 import { Bullets } from "./bullets.js";
 import { CollisionDetection } from "./collisionDetection.js";
-import { Destruction } from "./Destruction.js";
+import { Destruction, EnemyDestruction } from "./Destruction.js";
 import { Enemy } from "./enemy.js";
 import { InputHandler } from "./input.js";
 import { Player } from "./player.js";
@@ -19,6 +19,7 @@ export class Game {
 
     this.speed = 3;
   
+    this.maxBullets = 60;
     this.bullets = [];
     this.enemies = [];
     this.destructionFire = [];
@@ -29,11 +30,14 @@ export class Game {
 
     // this.debug = false;
     this.score = 0;
+    this.scoreToWin = 400;
     this.gameOver = false;
 
     this.gameMusic = new Audio();
     this.gameMusic.src = '../assets/sound/gameMusic/m1.mp3';
 
+    this.gameOverMusic = new Audio();
+    this.gameOverMusic.src = '../assets/sound/win.ogg';
 
   }
   update(deltaTime) {
@@ -62,6 +66,9 @@ export class Game {
     this.destructionFire.forEach(fire => {
       fire.update(deltaTime);
     });
+
+    this.destructionFire = this.destructionFire.filter(fire => !fire.markedForDeletion);
+
     // For schedule enemy entry;
 
     if(this.enemyEntryTimer > this.enemyEntryInterval) {
@@ -94,17 +101,28 @@ export class Game {
     });
 
     if(this.gameOver) {
-      this.text.gameOverScreen(context);
+      if(this.score > this.scoreToWin) {
+        this.text.gameOverScreen(context, true);
+        this.gameOverMusic.play();
+      } else {
+        this.text.gameOverScreen(context, false);
+      }
     }
 
   }
   updateBullets() {
-    this.bullets.push(new Bullets(this));
+    if(this.maxBullets > 0 ) {
+      this.bullets.push(new Bullets(this));
+      this.maxBullets--;
+    }
   }
   addNewEnemies() {
     this.enemies.push(new Enemy(this));
   }
-  addNewDestructionFire(enemyInfo) {
-    this.destructionFire.push(new Destruction(this, enemyInfo));
+  addDestructionFireForEnemy(enemyInfo) {
+    this.destructionFire.push(new EnemyDestruction(this, enemyInfo));
+  }
+  addDestructionFireForPlayer(playerInfo) {
+    this.destructionFire.push(new Destruction(this, playerInfo));
   }
 }

@@ -3,50 +3,30 @@ export class Text {
     this.game = game;
   }
   draw(context) {
-    context.font = "30px Arial";
-    context.fillText(`Score: ${this.game.score}`, 40, 60, 200);
-  }
-  gameOverScreen(context) {
     context.save();
-    context.fillStyle = "rgba(255, 0, 0, 0.97)";
+    context.font = "30px Arial";
+    context.fillStyle = "rgb(0, 0, 0)";
+    context.fillText(`Score: ${this.game.score}`, 40, 60, 200);
+
+    context.fillStyle = "rgb(255, 165, 0)";
+    context.fillText(`Bullets: ${this.game.maxBullets}`, 38, 98, 200);
+
+    context.fillStyle = "rgb(165, 0, 0)";
+    context.fillText(`Bullets: ${this.game.maxBullets}`, 40, 100, 200);
+    context.restore();
+  }
+  gameOverScreen(context, victory) {
+    context.save();
+    context.fillStyle = "rgba(255, 255, 255, 0.5)";
     this.createRoundedRectangle(context);
     
     context.textAlign ="center";
-    context.fillStyle = "rgb(255, 255, 255)";
+    context.fillStyle = "rgb(255, 0, 0)";
 
-    if(this.game.score > 200) {
-      context.font = "20px Arial";
-      context.fillText(
-        `Yahoo, You have killed ${this.game.score / 10} dragons`,
-        this.game.width * 0.5,
-        this.game.height * 0.5 - 60,
-        this.game.width * 0.5 - 40
-      );
-
-      context.font = "40px Arial";
-      context.fillText(
-        `Scored ${this.game.score} points`,
-        this.game.width * 0.5,
-        this.game.height * 0.5,
-        this.game.width * 0.5 - 40
-      );
+    if(victory) {
+      this.victoryText(context);
     } else {
-
-      context.font = "20px Arial";
-      context.fillText(
-        `Not enough dragon killed`,
-        this.game.width * 0.5,
-        this.game.height * 0.5 - 60,
-        this.game.width * 0.5 - 40
-      ); 
-
-      context.font = "40px Arial";
-      context.fillText(
-        `You lose !!!`,
-        this.game.width * 0.5,
-        this.game.height * 0.5,
-        this.game.width * 0.5 - 40
-      ); 
+      this.lossText(context);
     }
 
     context.restore();
@@ -87,5 +67,57 @@ export class Text {
     context.lineTo(box.x, box.y + box.r);
     context.quadraticCurveTo(box.x, box.y, box.x + box.r, box.y);
     context.fill();
+  }
+  victoryText(context) {
+    context.font = "60px Arial";
+    context.fillText(
+      `Victory !!!`,
+      this.game.width * 0.5,
+      this.game.height * 0.5 - 60,
+      this.game.width * 0.5 - 40
+    );
+
+    context.font = "20px Arial";
+    context.fillText(
+      `Before death, you killed ${this.game.score / 10} dragons`,
+      this.game.width * 0.5,
+      this.game.height * 0.5,
+      this.game.width * 0.5 - 40
+    );
+
+    context.font = "40px Arial";
+    context.fillText(
+      `Scored ${this.game.score} points`,
+      this.game.width * 0.5,
+      this.game.height * 0.5 + 60,
+      this.game.width * 0.5 - 40
+    );
+  }
+  lossText(context) {
+    context.font = "20px Arial";
+    context.fillText(
+      `Dead before dragons.`,
+      this.game.width * 0.5,
+      this.game.height * 0.5 - 60,
+      this.game.width * 0.5 - 40
+    ); 
+
+    context.font = "40px Arial";
+    context.fillText(
+      `You lose !!!`,
+      this.game.width * 0.5,
+      this.game.height * 0.5,
+      this.game.width * 0.5 - 40
+    ); 
+
+    context.font = "20px Arial";
+    context.fillText(
+      `Try again in next life.`,
+      this.game.width * 0.5,
+      this.game.height * 0.5 + 60,
+      this.game.width * 0.5 - 40
+    ); 
+
+
   }
 }

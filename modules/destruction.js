@@ -1,10 +1,10 @@
 export class Destruction {
-  constructor(game, enemyInfo) {
+  constructor(game, objectInfo) {
     this.game = game;
-    this.x = enemyInfo.x;
-    this.y = enemyInfo.y;
-    this.w = enemyInfo.width * enemyInfo.sizeModifier;
-    this.h = enemyInfo.height * enemyInfo.sizeModifier;
+    this.x = objectInfo.x;
+    this.y = objectInfo.y;
+    this.w = objectInfo.width;
+    this.h = objectInfo.height;
     this.image = document.querySelector("#fire");
 
     this.frame = 0;
@@ -16,6 +16,10 @@ export class Destruction {
     this.fps = 20;
     this.frameInterval = 1000 / this.fps;
     this.frameTimer = 0;
+
+    this.destructionMusic = new Audio();
+    this.destructionMusic.src = '../assets/sound/explosion/DeathFlash.flac';
+    this.destructionMusic.play();
 
     this.markedForDeletion = false;
   }
@@ -45,5 +49,14 @@ export class Destruction {
       this.w,
       this.h
     );
+  }
+}
+
+
+export class EnemyDestruction extends Destruction {
+  constructor(game, enemyInfo) {
+    super(game, enemyInfo);
+    this.w = enemyInfo.width * enemyInfo.sizeModifier;
+    this.h = enemyInfo.height * enemyInfo.sizeModifier;
   }
 }

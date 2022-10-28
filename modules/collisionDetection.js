@@ -20,8 +20,7 @@ export class CollisionDetection {
           bulletValues.y + bulletValues.h > enemyValues.y
         ) {
           // Collision detected!
-          this.game.addNewDestructionFire(enemy);
-          console.log(this.game.destructionFire);
+          this.game.addDestructionFireForEnemy(enemy);
 
           enemy.markedForDeletion = true;
           bullet.markedForDeletion = true;
@@ -54,8 +53,14 @@ export class CollisionDetection {
         playerValues.y + playerValues.h > enemyValues.y
       ) {
         // Collision detected!
+
+        this.game.addDestructionFireForEnemy(enemy);
+        this.game.addDestructionFireForPlayer(this.game.player);
+        
         this.game.gameMusic.pause();
-        this.game.gameOver = true;
+        setTimeout(() => {
+          this.game.gameOver = true;
+        }, 100);
 
       } 
 

@@ -22,6 +22,7 @@ export class CollisionDetection {
           // Collision detected!
           enemy.markedForDeletion = true;
           bullet.markedForDeletion = true;
+          this.game.score += 10;
         } 
         // debugger;
       })

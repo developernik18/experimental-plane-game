@@ -4,6 +4,7 @@ import { CollisionDetection } from "./collisionDetection.js";
 import { Enemy } from "./enemy.js";
 import { InputHandler } from "./input.js";
 import { Player } from "./player.js";
+import { Text } from "./text.js";
 
 export class Game {
   constructor(width, height) {
@@ -13,6 +14,7 @@ export class Game {
     this.input = new InputHandler(this);
     this.player = new Player(this);
     this.collisionDetection = new CollisionDetection(this);
+    this.text = new Text(this);
 
     this.speed = 3;
   
@@ -24,6 +26,7 @@ export class Game {
     this.enemyEntryInterval = 1000 / this.efps;
 
     this.debug = false;
+    this.score = 0;
     this.gameOver = false;
   }
   update(deltaTime) {
@@ -71,6 +74,12 @@ export class Game {
     this.enemies.forEach(enemy => {
       enemy.draw(context);
     })
+    this.text.draw(context);
+
+    if(this.gameOver) {
+      this.text.gameOverScreen(context);
+    }
+
   }
   updateBullets() {
     this.bullets.push(new Bullets(this));

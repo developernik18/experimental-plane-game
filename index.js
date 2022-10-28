@@ -10,7 +10,7 @@ window.addEventListener('load', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
-  const game = new Game(canvas.width, canvas.height);
+  let game = new Game(canvas.width, canvas.height);
   let lastTime = 0;
   
   

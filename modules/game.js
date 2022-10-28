@@ -121,9 +121,11 @@ export class Game {
   }
   addDestructionFireForEnemy(enemyInfo) {
     this.destructionFire.push(new EnemyDestruction(this, enemyInfo));
-    this.maxBullets += 3;
   }
   addDestructionFireForPlayer(playerInfo) {
     this.destructionFire.push(new Destruction(this, playerInfo));
+  }
+  incrementMaxBullets() {
+    this.maxBullets += 2;
   }
 }

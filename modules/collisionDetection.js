@@ -21,9 +21,9 @@ export class CollisionDetection {
         ) {
           // Collision detected!
           this.game.addDestructionFireForEnemy(enemy);
-
           enemy.markedForDeletion = true;
           bullet.markedForDeletion = true;
+          this.game.incrementMaxBullets();
           this.game.score += 10;
         } 
         // debugger;

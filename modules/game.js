@@ -38,6 +38,7 @@ export class Game {
 
     this.gameOverMusic = new Audio();
     this.gameOverMusic.src = '../assets/sound/win.ogg';
+    
 
   }
   update(deltaTime) {

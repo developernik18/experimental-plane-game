@@ -16,14 +16,33 @@ export class Enemy {
     this.vx = 3;
     this.markedForDeletion = false;
 
+    this.vy = Math.random() * 4 - 2;
+
     this.fps = 10;
     this.imageInterval = 1000 / this.fps;
     this.imageTimer = 0;
 
     this.collisionValues = {};
+
+    this.motionChangeTimer = 0;
+    this.motionChangeInterval = 1000;
   }
   update(deltaTime) {
+    if(this.motionChangeTimer > this.motionChangeInterval) {
+      this.vy = Math.random() * 6 - 3;
+      this.vx = Math.random() * 2 + 2;
+
+      this.motionChangeTimer = 0;
+    } else {
+      this.motionChangeTimer += deltaTime;
+    }
+
     this.x -= this.vx * this.game.speed;
+    this.y -= this.vy;
+
+    if(this.y > this.game.height - (this.height * this.sizeModifier) || this.y < 0) {
+      this.vy = -this.vy;
+    } 
 
     if(this.x + this.width < 0) {
       this.markedForDeletion = true;
@@ -34,7 +53,6 @@ export class Enemy {
   }
   draw(context) {
     
-
     if(this.game.debug) {
       context.save();
       context.beginPath();

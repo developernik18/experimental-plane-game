@@ -49,11 +49,11 @@ export class Game {
     this.ranks = [
       "Flying Officer",
       "Flight Lieutenant",
-      "Junior Officers",
+      "Junior Officer",
       "Squadron Leader",
       "Wing Commander",
       "Group Captain",
-      "Senior Officers",
+      "Senior Officer",
       "Air Commodore",
       "Air Vice Marshal",
       "Air Marshal",

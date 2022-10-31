@@ -19,11 +19,11 @@ export class Text {
     context.save();
     context.fillStyle = "rgba(255, 255, 255, 0.5)";
     this.createRoundedRectangle(context);
-    
-    context.textAlign ="center";
+
+    context.textAlign = "center";
     context.fillStyle = "rgb(255, 0, 0)";
 
-    if(victory) {
+    if (victory) {
       this.victoryText(context);
     } else {
       this.lossText(context);
@@ -79,7 +79,9 @@ export class Text {
 
     context.font = "20px Arial";
     context.fillText(
-      `Before death, you killed ${this.game.score / 10} dragons`,
+      `Good Job ${this.game.reachedRank}, You killed ${
+        this.game.score / 10
+      } dragons`,
       this.game.width * 0.5,
       this.game.height * 0.5,
       this.game.width * 0.5 - 40
@@ -100,7 +102,7 @@ export class Text {
       this.game.width * 0.5,
       this.game.height * 0.5 - 60,
       this.game.width * 0.5 - 40
-    ); 
+    );
 
     context.font = "40px Arial";
     context.fillText(
@@ -108,16 +110,14 @@ export class Text {
       this.game.width * 0.5,
       this.game.height * 0.5,
       this.game.width * 0.5 - 40
-    ); 
+    );
 
     context.font = "20px Arial";
     context.fillText(
-      `Try again in next life.`,
+      `${this.game.reachedRank}, Try to become better in next life`,
       this.game.width * 0.5,
       this.game.height * 0.5 + 60,
       this.game.width * 0.5 - 40
-    ); 
-
-
+    );
   }
 }

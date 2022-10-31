@@ -35,16 +35,23 @@ export class Game {
 
     this.gameMusic = new Audio();
     this.gameMusic.src = '../assets/sound/gameMusic/m1.mp3';
+    this.playMusic = true;
 
     this.gameOverMusic = new Audio();
     this.gameOverMusic.src = '../assets/sound/win.ogg';
-    
+
+    this.playOtherSounds = true;    
+
+    this.lfps = 0.1;
+    this.newLevelTimer = 0;
+    this.newLevelInterval = 1000 / this.lfps;
 
   }
   update(deltaTime) {
     // if(this.input.keys.includes('d')) {
     //   this.debug = !this.debug;
     // }
+    
 
     this.background.update(deltaTime);
     this.player.update(deltaTime);
@@ -60,9 +67,7 @@ export class Game {
     this.enemies = this.enemies.filter(enemy => !enemy.markedForDeletion);
 
     this.collisionDetection.isPlayerDead();
-
     this.collisionDetection.isEnemyDead();
-
 
     this.destructionFire.forEach(fire => {
       fire.update(deltaTime);
@@ -71,16 +76,8 @@ export class Game {
     this.destructionFire = this.destructionFire.filter(fire => !fire.markedForDeletion);
 
     // For schedule enemy entry;
-
-    if(this.enemyEntryTimer > this.enemyEntryInterval) {
-      this.enemyEntryInterval = Math.random() * 2000;
-
-      this.addNewEnemies();
-      this.enemyEntryTimer = 0;
-    } else {
-      this.enemyEntryTimer += deltaTime;
-    }
-
+    this.#addNewEnemy(deltaTime);
+    this.#goToNextLevel(deltaTime);
   }
   draw(context) {
     context.clearRect(0, 0, this.width, this.height);
@@ -94,21 +91,13 @@ export class Game {
     this.enemies.forEach(enemy => {
       enemy.draw(context);
     })
-    this.text.draw(context);
-
     
     this.destructionFire.forEach(fire => {
       fire.draw(context);
     });
 
-    if(this.gameOver) {
-      if(this.score > this.scoreToWin) {
-        this.text.gameOverScreen(context, true);
-        this.gameOverMusic.play();
-      } else {
-        this.text.gameOverScreen(context, false);
-      }
-    }
+    this.text.draw(context);
+    this.drawIfGameOver(context);
 
   }
   updateBullets() {
@@ -128,5 +117,40 @@ export class Game {
   }
   incrementMaxBullets() {
     this.maxBullets += 2;
+  }
+  drawIfGameOver(context) {
+    if(this.gameOver) {
+      if(this.score > this.scoreToWin) {
+        this.text.gameOverScreen(context, true);
+        this.gameOverMusic.play();
+      } else {
+        this.text.gameOverScreen(context, false);
+      }
+    }
+  }
+  #addNewEnemy(deltaTime) {
+    if(this.enemyEntryTimer > this.enemyEntryInterval) {
+      this.enemyEntryInterval = Math.random() * 2000;
+
+      this.addNewEnemies();
+      this.enemyEntryTimer = 0;
+    } else {
+      this.enemyEntryTimer += deltaTime;
+    }
+  }
+  #goToNextLevel(deltaTime) {
+    if(this.newLevelTimer > this.newLevelInterval) {
+      this.score += 100;
+      this.maxBullets += 10;
+      this.speed += 0.5;
+      this.newLevelTimer = 0;
+    } else {
+      this.newLevelTimer += deltaTime;
+    }
+  }
+  shouldMusicContinue() {
+    if(this.gameMusic.paused && !this.gameOver) {
+      this.gameMusic.play();
+    }
   }
 }

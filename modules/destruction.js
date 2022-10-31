@@ -19,7 +19,9 @@ export class Destruction {
 
     this.destructionMusic = new Audio();
     this.destructionMusic.src = '../assets/sound/explosion/DeathFlash.flac';
-    this.destructionMusic.play();
+    if(this.game.playOtherSounds) {
+      this.destructionMusic.play();
+    }
 
     this.markedForDeletion = false;
   }

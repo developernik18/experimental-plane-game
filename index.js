@@ -59,7 +59,6 @@ window.addEventListener('load', () => {
     musicOffClasses.toggle('activeIcon');
     musicOffClasses.toggle('displayNone');
 
-
     if(!game.gameOver) {
       game.playMusic = !game.playMusic;
     }

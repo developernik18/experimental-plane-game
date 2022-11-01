@@ -17,7 +17,7 @@ export class Text {
   }
   gameOverScreen(context, victory) {
     context.save();
-    context.fillStyle = "rgba(255, 255, 255, 0.5)";
+    context.fillStyle = "rgba(255, 255, 255, 0.4)";
     this.createRoundedRectangle(context);
 
     context.textAlign = "center";

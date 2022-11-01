@@ -35,6 +35,7 @@ export class Game {
 
     this.gameMusic = new Audio();
     this.gameMusic.src = "../assets/sound/gameMusic/m1.mp3";
+
     this.playMusic = true;
 
     this.gameOverMusic = new Audio();
@@ -187,7 +188,7 @@ export class Game {
     }
   }
   shouldMusicContinue() {
-    if (this.gameMusic.paused && !this.gameOver) {
+    if (this.gameMusic.paused && !this.gameOver && this.playMusic) {
       this.gameMusic.play();
     }
   }

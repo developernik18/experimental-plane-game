@@ -190,6 +190,9 @@ export class Game {
   shouldMusicContinue() {
     if (this.gameMusic.paused && !this.gameOver && this.playMusic) {
       this.gameMusic.play();
+    } else if(this.gameOver) {
+      this.gameMusic.pause();
     }
+    
   }
 }

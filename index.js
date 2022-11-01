@@ -30,8 +30,8 @@ window.addEventListener('load', () => {
 
     } else {
       if(gameOn) {
-        game.shouldMusicContinue();
         requestAnimationFrame(animate);
+        game.shouldMusicContinue();
       } else {
         gameOn = true;
       }
@@ -51,12 +51,30 @@ window.addEventListener('load', () => {
   });
 
   musicBtn.addEventListener('click', () => {
+    const musicOnClasses = document.querySelector('#musicOn').classList;
+    const musicOffClasses = document.querySelector('#musicOff').classList;
+
+    musicOnClasses.toggle('activeIcon');
+    musicOnClasses.toggle('displayNone');
+    musicOffClasses.toggle('activeIcon');
+    musicOffClasses.toggle('displayNone');
+
+
     if(!game.gameOver) {
       game.playMusic = !game.playMusic;
     }
   });
 
   soundBtn.addEventListener('click', () => {
+    const soundOnClasses = document.querySelector('#soundOn').classList;
+    const soundOffClasses = document.querySelector('#soundOff').classList;
+
+    soundOnClasses.toggle('activeIcon');
+    soundOnClasses.toggle('displayNone');
+    soundOffClasses.toggle('activeIcon');
+    soundOffClasses.toggle('displayNone');
+
+
     if(!game.gameOver) {
       game.playOtherSounds = !game.playOtherSounds;
     }

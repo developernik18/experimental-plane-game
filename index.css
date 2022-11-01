@@ -34,6 +34,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 20px;
+  padding: 60px;
 }
 
 .buttonGroup {
@@ -55,4 +56,17 @@
 
 button:hover {
   background-color: #d60000;
+}
+
+.iconGroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.activeIcon {
+  width: 40px;
+  margin: 10px 20px;
+  opacity: 0.6;
 }

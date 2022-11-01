@@ -24,7 +24,10 @@ export class CollisionDetection {
           enemy.markedForDeletion = true;
           bullet.markedForDeletion = true;
           this.game.incrementMaxBullets();
+
           this.game.score += 10;
+          this.game.enemyKilled ++;
+
         } 
         // debugger;
       })

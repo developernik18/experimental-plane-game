@@ -1,59 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fighter plane</title>
-  <link rel="stylesheet" href="index.css">
-</head>
-<body>
-  <div class="canvasContainer">
-    <canvas id="canvas"></canvas>
-  </div>
-
-  <div id="menu">
-    <div class="buttonGroup">
-      <button id="playGame" class="button"> Play Game </button>
-      <button id="sound" class="button"> Sound </button>
-      <button id="music" class="button"> Music </button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fighter plane</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="canvasContainer">
+      <canvas id="canvas"></canvas>
     </div>
-  </div>
+
+    <div id="menu">
+      <div class="buttonGroup">
+        <button id="playGame" class="button">Play Game</button>
+        <!-- <button id="sound" class="button"> Sound </button>
+      <button id="music" class="button"> Music </button> -->
+      </div>
+      
+      <div class="iconGroup">
+        <div class="musicIcon" id="music">
+          <img
+            src="assets/icons/music-on.png"
+            alt="music on"
+            class="activeIcon"
+            id="musicOn"
+          />
+          <img
+            src="assets/icons/music-off.png"
+            alt="music off"
+            class="displayNone"
+            id="musicOff"
+          />
+        </div>
+        <div class="soundIcon" id="sound">
+          <img
+            src="assets/icons/sound-on.png"
+            alt="sound on"
+            class="activeIcon"
+            id="soundOn"
+          />
+          <img
+            src="assets/icons/sound-off.png"
+            alt="sound off"
+            class="displayNone"
+            id="soundOff"
+          />
+        </div>
+      </div>
 
 
+    </div>
 
-  <script src="index.js" type="module"></script>
-  <img src="assets/Plane/Fly (1).png" alt="fly" class="displayNone" id="fly1">
-  <img src="assets/Plane/Fly (2).png" alt="fly" class="displayNone" id="fly2">
+    <script src="index.js" type="module"></script>
+    <img
+      src="assets/Plane/Fly (1).png"
+      alt="fly"
+      class="displayNone"
+      id="fly1"
+    />
+    <img
+      src="assets/Plane/Fly (2).png"
+      alt="fly"
+      class="displayNone"
+      id="fly2"
+    />
 
-  <img src="assets/Plane/Shoot (1).png" alt="Shoot" class="displayNone" id="shoot1">
-  <img src="assets/Plane/Shoot (2).png" alt="Shoot" class="displayNone" id="shoot2">
-  <img src="assets/Plane/Shoot (3).png" alt="Shoot" class="displayNone" id="shoot3">
-  <img src="assets/Plane/Shoot (4).png" alt="Shoot" class="displayNone" id="shoot4">
-  <img src="assets/Plane/Shoot (5).png" alt="Shoot" class="displayNone" id="shoot5">
+    <img
+      src="assets/Plane/Shoot (1).png"
+      alt="Shoot"
+      class="displayNone"
+      id="shoot1"
+    />
+    <img
+      src="assets/Plane/Shoot (2).png"
+      alt="Shoot"
+      class="displayNone"
+      id="shoot2"
+    />
+    <img
+      src="assets/Plane/Shoot (3).png"
+      alt="Shoot"
+      class="displayNone"
+      id="shoot3"
+    />
+    <img
+      src="assets/Plane/Shoot (4).png"
+      alt="Shoot"
+      class="displayNone"
+      id="shoot4"
+    />
+    <img
+      src="assets/Plane/Shoot (5).png"
+      alt="Shoot"
+      class="displayNone"
+      id="shoot5"
+    />
 
-  <img src="assets/Bullet/Bullet (1).png" alt="Bullet" class="displayNone" id="bullet1">
-  <img src="assets/Bullet/Bullet (2).png" alt="Bullet" class="displayNone" id="bullet2">
-  <img src="assets/Bullet/Bullet (3).png" alt="Bullet" class="displayNone" id="bullet3">
-  <img src="assets/Bullet/Bullet (4).png" alt="Bullet" class="displayNone" id="bullet4">
-  <img src="assets/Bullet/Bullet (5).png" alt="Bullet" class="displayNone" id="bullet5">
+    <img
+      src="assets/Bullet/Bullet (1).png"
+      alt="Bullet"
+      class="displayNone"
+      id="bullet1"
+    />
+    <img
+      src="assets/Bullet/Bullet (2).png"
+      alt="Bullet"
+      class="displayNone"
+      id="bullet2"
+    />
+    <img
+      src="assets/Bullet/Bullet (3).png"
+      alt="Bullet"
+      class="displayNone"
+      id="bullet3"
+    />
+    <img
+      src="assets/Bullet/Bullet (4).png"
+      alt="Bullet"
+      class="displayNone"
+      id="bullet4"
+    />
+    <img
+      src="assets/Bullet/Bullet (5).png"
+      alt="Bullet"
+      class="displayNone"
+      id="bullet5"
+    />
 
+    <img
+      src="assets/Plane/Dead (1).png"
+      alt="dead"
+      class="displayNone"
+      id="dead"
+    />
 
+    <img src="assets/dragon.png" alt="enemy" class="displayNone" id="enemy" />
+    <img src="assets/fire.png" alt="fire" class="displayNone" id="fire" />
 
-  <img src="assets/Plane/Dead (1).png" alt="dead" class="displayNone" id="dead">
+    <!-- <audio src="assets/sound/flaunch.wav" id="bulletSound" class="displayNone"></audio> -->
 
-  <img src="assets/dragon.png" alt="enemy" class="displayNone" id="enemy">
-  <img src="assets/fire.png" alt="fire" class="displayNone" id="fire">
-
-
-  <!-- <audio src="assets/sound/flaunch.wav" id="bulletSound" class="displayNone"></audio> -->
-
-
-
-
-  <img src="assets/BG.png" alt="background" class="displayNone" id="bg">
-
-
-
-</body>
+    <img src="assets/BG.png" alt="background" class="displayNone" id="bg" />
+  </body>
 </html>

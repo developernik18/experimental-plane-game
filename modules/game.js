@@ -30,7 +30,7 @@ export class Game {
 
     // this.debug = false;
     this.score = 0;
-    this.scoreToWin = 400;
+    this.enemyKilled = 0;
     this.gameOver = false;
 
     this.gameMusic = new Audio();
@@ -134,32 +134,31 @@ export class Game {
   }
   drawIfGameOver(context) {
     if (this.gameOver) {
-      if (this.score < 100) {
+      if (this.enemyKilled < 10) {
         this.gameOverMusic.play();
-        return this.text.gameOverScreen(context, false);
-      } else if (this.score < 200) {
         this.reachedRank = this.ranks[0];
-      } else if (this.score < 300) {
+        return this.text.gameOverScreen(context, false);
+      } else if (this.enemyKilled < 20) {
         this.reachedRank = this.ranks[1];
-      } else if (this.score < 400) {
+      } else if (this.enemyKilled < 30) {
         this.reachedRank = this.ranks[2];
-      } else if (this.score < 500) {
+      } else if (this.enemyKilled < 40) {
         this.reachedRank = this.ranks[3];
-      } else if (this.score < 1000) {
+      } else if (this.enemyKilled < 50) {
         this.reachedRank = this.ranks[4];
-      } else if (this.score < 1500) {
+      } else if (this.enemyKilled < 100) {
         this.reachedRank = this.ranks[5];
-      } else if (this.score < 2000) {
+      } else if (this.enemyKilled < 150) {
         this.reachedRank = this.ranks[6];
-      } else if (this.score < 2500) {
+      } else if (this.enemyKilled < 200) {
         this.reachedRank = this.ranks[7];
-      } else if (this.score < 3000) {
+      } else if (this.enemyKilled < 250) {
         this.reachedRank = this.ranks[8];
-      } else if (this.score < 4000) {
+      } else if (this.enemyKilled < 300) {
         this.reachedRank = this.ranks[9];
-      } else if (this.score < 5000) {
+      } else if (this.enemyKilled < 500) {
         this.reachedRank = this.ranks[10];
-      } else {
+      } else{
         this.reachedRank = this.ranks[11];
       } 
 

@@ -80,7 +80,7 @@ export class Text {
     context.font = "20px Arial";
     context.fillText(
       `Good Job ${this.game.reachedRank}, You killed ${
-        this.game.score / 10
+        this.game.enemyKilled
       } dragons`,
       this.game.width * 0.5,
       this.game.height * 0.5,

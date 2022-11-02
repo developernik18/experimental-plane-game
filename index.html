@@ -15,10 +15,8 @@
     <div id="menu">
       <div class="buttonGroup">
         <button id="playGame" class="button">Play Game</button>
-        <!-- <button id="sound" class="button"> Sound </button>
-      <button id="music" class="button"> Music </button> -->
       </div>
-      
+
       <div class="iconGroup">
         <div class="musicIcon" id="music">
           <img
@@ -48,9 +46,44 @@
             id="soundOff"
           />
         </div>
+        <div id="informationIcon">
+          <img
+            src="assets/icons/informations.png"
+            alt="information"
+            class="activeIcon"
+            id="information"
+          />
+        </div>
       </div>
+    </div>
 
-
+    <div id="informationBox">
+      <img src="assets/icons/close.png" alt="close" id="closeButton">
+      <h3>Instructions:</h3>
+      <div>
+        <h5>Movement Control</h5>
+        <p>
+          <span class="highlight">Up, down, left</span> and
+          <span class="highlight">right arrow </span>for movements.
+        </p>
+      </div>
+      <div>
+        <h5>Shooting Control</h5>
+        <p> <span class="highlight"> " F " </span> key to fire Bullets.</p>
+      </div>
+      <div>
+        <h5>Victory Condition</h5>
+        <div class="textInstructions">
+          To win the battle, you need to 
+          <span class="highlight">kill</span> at least 
+          <span class="highlight">10 dragons</span>  <br />
+          Afterward your rank will be determined by :
+          <ul>
+            <li>Dragons kill count</li>
+            <li>Scored points</li>
+          </ul>
+        </div>
+      </div>
     </div>
 
     <script src="index.js" type="module"></script>

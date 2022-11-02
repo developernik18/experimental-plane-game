@@ -5,6 +5,11 @@
   border: none;
 }
 
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.1rem;
+}
+
 .canvasContainer {
   display: flex;
   align-items: center;
@@ -69,4 +74,49 @@ button:hover {
   width: 40px;
   margin: 10px 20px;
   opacity: 0.6;
+}
+
+#informationBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 300px;
+  min-height: 200px;
+  background-color: rgba(255,255,255,0.4);
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  padding: 60px; 
+  display: none;
+}
+
+#informationBox h3 {
+  margin: 20px 0;
+}
+
+#informationBox h5 {
+  margin: 20px 0 0 0;
+}
+
+#informationBox p, .textInstructions {
+  margin: 5px 0;
+}
+
+#informationBox ul {
+  margin: 0 20px;
+  color: rgb(161, 24, 24);
+  font-weight: 500;
+}
+
+.highlight {
+  color:rgb(161, 24, 24);
+  font-weight: 500;
+}
+
+#closeButton {
+  width: 20px;
+  float: right;
+  cursor: pointer;
 }

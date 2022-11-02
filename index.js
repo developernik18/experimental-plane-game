@@ -5,9 +5,14 @@ window.addEventListener('load', () => {
    * @type {HTMLCanvasElement}
    */
   const canvas = document.querySelector('#canvas');
+
+  const menu = document.querySelector('#menu');
   const playGameBtn = document.querySelector('#playGame');
   const musicBtn = document.querySelector('#music');
   const soundBtn = document.querySelector('#sound');
+  const infoBtn = document.querySelector('#information');
+  const informationBox = document.querySelector('#informationBox');
+  const closeBtn = document.querySelector('#closeButton');
 
   const ctx = canvas.getContext('2d');
   
@@ -78,6 +83,18 @@ window.addEventListener('load', () => {
       game.playOtherSounds = !game.playOtherSounds;
     }
   });
+
+  infoBtn.addEventListener('click', () => {
+    informationBox.style.display = "block"
+    menu.style.display = "none";
+  });
+
+  closeBtn.addEventListener('click', () => {
+    informationBox.style.display = "none"
+    menu.style.display = "block";
+  })
+
+  
 
 
   animate(lastTime);
